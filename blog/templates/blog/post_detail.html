@@ -1,125 +1,63 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="ko">
+{% extends 'blog/base.html' %}
+{% block head_title %}
+    {{ post.title }} - Blog
+{% endblock %}
 
-<head>
+    {% block main_area %}
+        <div id="post-area">
+            <!-- Title -->
+            <h1 class="mt-4">{{ post.title }}</h1>
+            <h5 class="text-muted">{{ post.hook_text }}</h5>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
 
-  <title>{{ post.title }} - Blog</title>
+            <!-- Author -->
+            <p class="lead">
+              by
+              <a href="#">작성자명 쓸 위치(개발예정)</a>
+            </p>
 
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
+            <hr>
 
-  <!-- Custom styles for this template -->
-  <link rel="stylesheet" href="{% static 'blog/css/blog-post.css' %}" media="screen">
-</head>
+            <!-- Date/Time -->
+            <p>Posted on {{ post.created_at }}</p>
 
-<body>
+            <hr>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">Start Bootstrap</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+            <!-- Preview Image -->
+            {% if post.head_image %}
+                <img class="img-fluid rounded" src="{{ post.url }}" alt="{{ post }} head image">
+            {% else %}
+                <img class="img-fluid rounded" src="https://picsum.photos/seed/{{ post.id }}/800/200" alt="random_image">
+            {% endif %}
 
-  <!-- Page Content -->
-  <div class="container">
+            <hr>
 
-    <div class="row">
+            <!-- Post Content -->
+            <p>{{ post.content }}</p>
+              {% if post.file_upload %}
+              <a href="{{ post.file_upload.url }}" class="btn btn-outline-info" role="button" download>Download</a>
+              {% endif %}
+            <hr>
+        </div>
 
-      <!-- Post Content Column -->
-      <div class="col-lg-8">
 
-        <!-- Title -->
-        <h1 class="mt-4">{{ post.title }}</h1>
-        <h5 class="text-muted">{{ post.hook_text }}</h5>
 
-          
-        <!-- Author -->
-        <p class="lead">
-          by
-          <a href="#">작성자명 쓸 위치(개발예정)</a>
-        </p>
-
-        <hr>
-
-        <!-- Date/Time -->
-        <p>Posted on {{ post.created_at }}</p>
-
-        <hr>
-
-        <!-- Preview Image -->
-        {% if post.head_image %}
-            <img class="img-fluid rounded" src="{{ post.url }}" alt="{{ post }} head image">
-        {% else %}
-            <img class="img-fluid rounded" src="https://picsum.photos/seed/{{ post.id }}/800/200" alt="random_image">
-        {% endif %}
-
-        <hr>
-
-        <!-- Post Content -->
-        <p>{{ post.content }}</p>
-          {% if post.file_upload %}
-          <a href="{{ post.file_upload.url }}" class="btn btn-outline-info" role="button" download>Download</a>
-          {% endif %}
-        <hr>
-
-        <!-- Comments Form -->
-        <div class="card my-4">
-          <h5 class="card-header">Leave a Comment:</h5>
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <textarea class="form-control" rows="3"></textarea>
+        <div id="comment-area">
+            <!-- Comments Form -->
+            <div class="card my-4">
+              <h5 class="card-header">Leave a Comment:</h5>
+              <div class="card-body">
+                <form>
+                  <div class="form-group">
+                    <textarea class="form-control" rows="3"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
-        </div>
+            </div>
 
-        <!-- Single Comment -->
-        <div class="media mb-4">
-          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-          <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-          </div>
-        </div>
-
-        <!-- Comment with nested comments -->
-        <div class="media mb-4">
-          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-          <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-
-            <div class="media mt-4">
+            <!-- Single Comment -->
+            <div class="media mb-4">
               <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
               <div class="media-body">
                 <h5 class="mt-0">Commenter Name</h5>
@@ -127,18 +65,35 @@
               </div>
             </div>
 
-            <div class="media mt-4">
+            <!-- Comment with nested comments -->
+            <div class="media mb-4">
               <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
               <div class="media-body">
                 <h5 class="mt-0">Commenter Name</h5>
                 Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+                <div class="media mt-4">
+                  <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                  <div class="media-body">
+                    <h5 class="mt-0">Commenter Name</h5>
+                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                  </div>
+                </div>
+
+                <div class="media mt-4">
+                  <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                  <div class="media-body">
+                    <h5 class="mt-0">Commenter Name</h5>
+                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                  </div>
+                </div>
+
               </div>
             </div>
 
           </div>
         </div>
-
-      </div>
+    {% endblock %}
 
       <!-- Sidebar Widgets Column -->
       <div class="col-md-4">
