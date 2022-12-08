@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import os
 
 # 함수를 사용하는 방법과 class를 사용하는 방법
@@ -15,8 +16,11 @@ class Post(models.Model):
     create_at = models.DateTimeField(auto_now_add=True) # 시간이 자동으로 입력
     updated_at = models.DateTimeField(auto_now=True)
     
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    
     def __str__(self):
-        return f'[{self.pk}]{self.title}'
+        return f'[{self.pk}]{self.title}::{self.author}'
     
     def get_absolute_url(self):
         return f'/blog/{self.pk}/'
