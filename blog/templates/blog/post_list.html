@@ -1,7 +1,10 @@
 {% extends 'blog/base.html' %}
 
 {% block main_area %}
-    <h1>Blog {% if category %}<span class="badge badge-secondary">{{ category }}</span>{% endif %}</h1>
+    <h1>Blog {% if category %}
+        <span class="badge badge-secondary">{{ category }}</span>
+        {% endif %}
+    </h1>
 
     {% if post_list.exists %}
 
@@ -14,6 +17,7 @@
                     <img class="card-img-top" src="https://picsum.photos/seed/{{ p.id }}/800/200" alt="random_image">
                 {% endif %}
                 <div class="card-body">
+                    
                     {% if p.category %}
                         <span class="badge badge-secondary float-right">{{ p.category }}</span>
                     {% else %}
@@ -25,6 +29,16 @@
                         <h5 class="text-muted">{{ p.hook_text }}</h5>
                     {% endif %}
                     <p class="card-text">{{ p.content | truncatewords:45 }}</p>
+                    
+                    {% if p.tags.exists %}
+                        <i class="fas fa-tags"></i>
+                            {% for tag in p.tags.iterator %}
+                                <a href="{{ tag.get_absolute_url }}"><span class="badge badge-pill badge-light">{{ tag }}</span></a>
+                            {% endfor %}
+                        <br>
+                        <br>
+                    {% endif %}
+                    
                     <a href="{{ p.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
                 </div>
                 <div class="card-footer text-muted">
