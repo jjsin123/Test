@@ -1,6 +1,14 @@
 {% extends 'blog/base.html' %}
 
     {% block main_area %}
+
+    {% if user.is_authenticated  %}
+        {% if user.is_superuser or user.is_staff %}
+            <a class="btn btn-info btn-sm float-right" href="/blog/create_post" role ="button"><i class="fas fa-pen"></i>&nbsp;&nbsp;New Post</a>
+        {% endif %}
+    {% endif %}
+
+
                 <h1>Blog {% if category %}
                         <span class="badge badge-secondary">{{ category }}</span>
                         {% endif %}
@@ -146,7 +154,3 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-
-</body>
-
-</html>
