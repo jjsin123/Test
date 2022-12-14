@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'single_pages',
-    'django_extensions'
+    'django_extensions',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,4 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/mediea/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'_media')
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
