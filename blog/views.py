@@ -23,7 +23,7 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
         return context
     
     def form_valid(self, form):
-        response = super(PostCreate, self).form_valid(form)
+        response = super(PostUpdate, self).form_valid(form)
         self.object.tags.clear()
         
         tags_str = self.request.POST.get('tags_str')
