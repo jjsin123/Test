@@ -128,7 +128,7 @@ def category_page(request,slug):
      )
         
     
-def tag_page(request, slug):
+def tag_page(request,slug):
     tag = Tag.objects.get(slug=slug)
     post_list = tag.post_set.all()
     
