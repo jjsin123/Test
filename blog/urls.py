@@ -9,6 +9,7 @@ urlpatterns = [
     # path('<int:pk>/',views.single_post_page),
     # path('',views.index),
     path('category/<str:slug>/',views.category_page),
+    path('<int:pk>/new_comment/',views.new_comment),
     # https://project-ztsct.run.goorm.io/blog/category/programming
     # programming 만 떼어 views.py 의 category_page()
     path('',views.PostList.as_view()),

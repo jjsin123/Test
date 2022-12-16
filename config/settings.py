@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '5@68uwsna^_payahewm+3&++vbsir*l@0kmc2!m+3y5hpmbbg+'
+SECRET_KEY = ')1hd48%=4(c#i2-i)0qcqjh+!u*_hd-o)xw+u=%s$vggc7j-tq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -49,8 +49,6 @@ INSTALLED_APPS = [
     
     'blog',
     'single_pages',
-    
-    
 ]
 
 MIDDLEWARE = [
@@ -134,7 +132,7 @@ USE_TZ = False
 STATIC_URL = '/static/'
 
 
-MEDIA_URL = '/mediea/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'_media')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -142,7 +140,6 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     
     'allauth.account.auth_backends.AuthenticationBackend',
-       
 )
 
 SITE_ID = 1
