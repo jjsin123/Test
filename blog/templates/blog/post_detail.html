@@ -114,6 +114,12 @@
                 </h5>
                 <p>{{ comment.content | linebreaks }}</p>
                 
+                {% if comment.create_at != comment.modified_at %}
+                
+                <p class="text-muted float-right"><small>Update: {{ comment.modified_at }}</small></p>
+                
+                {% endif %}
+            
             </div>
           
         </div>

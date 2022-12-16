@@ -10,7 +10,7 @@ from .forms import CommentForm
 
 class CommentUpdate(LoginRequiredMixin, UpdateView):
     model = Comment
-    from_class = CommentForm
+    form_class = CommentForm
     
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated and request.user == self.get_object().author:
