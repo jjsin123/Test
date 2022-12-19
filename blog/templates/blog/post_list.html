@@ -12,9 +12,15 @@
 
 
 
-                <h1>Blog {% if category %}
+                <h1>Blog 
+                    {% if search_info %}
+                        <small class="text-muted">{{ search_info }}</small>
+                    {% endif %}
+                    
+                    {% if category %}
                         <span class="badge badge-secondary">{{ category }}</span>
-                        {% endif %}
+                    {% endif %}
+                    
                     {% if tag %}
                         <span class="badge badge-secondary">{{ tag }}({{ tag.post_set.count }})</span>
                     {% endif %}
