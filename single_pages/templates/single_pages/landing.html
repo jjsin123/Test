@@ -3,21 +3,23 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>신종규의 웹사이트 입니다</title>
+    <title>안녕하세요 신종규의 웹사이트입니다</title>
     <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
     <link rel="stylesheet" href="{% static 'single_pages/css/landing.css' %}" media="screen">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 </head>
 <body>
     {% include 'blog/navbar.html' %}
     <section>
         <div class="container">
             <div class="row justify-content-between">
-                <div class="col-lg-6 text-light">
-                    <h2 class="mt-5">안녕하세요<br>신입 개발자 신종규입니다.</h2>
-                    <p>웹 프레임 워크중 하나인 Django를 이용한 Blog 만들기</p>
+                <div class="col-lg-6 mt-5 text-light">
+                    <div class="text_box">
+                      <span class="text"></span><span class="blink">|</span>
+                    </div>
                 </div>
                 <div class="col-lg-5">
-                    <h3 class="text-light mt-5">Blog - Recent Posts</h3>
+                    <h3 class="text-light mt-5"><b>Blog - Recent Posts</b> </h3>
                 {% for post in recent_posts %}
                     <div class="card mt-1">
                         <div class="card-body">
@@ -26,7 +28,7 @@
                                     {{ post.title }}
                                 </a>
                             </h6>
-                            <span class="badge badge-pill badge-light float-right">
+                            <span class="badge badge-pill badge-secondary float-right">
                                 {{ post.author.username }}
                                 &nbsp;&nbsp;
                                 {{ post.create_at }}
@@ -43,10 +45,31 @@
     </section>
     
     
+    
+    
+<script>
+const content = "안녕하세요. \n 개발자를 꿈꾸는 신종규입니다. \n 밤 하늘의 수많은 별처럼 \n 수많은 개발자 중 \n 가장 밝게 빛나는 \n 개발자가 되고 싶습니다. \n 이 웹사이트는 파이썬을 기반으로 \n 블로그 포스트,게시판 기능을 포함하여 \n 포트폴리오 목적으로 제작되었습니다.";
+const text = document.querySelector(".text");
+let i = 0;
+
+function typing(){
+    let txt = content[i++];
+    text.innerHTML += txt=== "\n" ? "<br/>": txt;
+    if (i > content.length) {
+        text.textContent = "";
+        i = 0;
+    }
+}
+setInterval(typing, 130)
+
+</script>
+    
+
+    
     <div class="fixed-bottom">
         {% include 'blog/footer.html' %}
     </div>
-    
+   
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

@@ -1,10 +1,10 @@
 body {
-    background: url('/static/single_pages/images/2.jpg') no-repeat center center fixed;
+    background: url('/static/single_pages/images/landing/4.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
-    
+    font-family: 'Gowun Dodum', sans-serif;
 }
 
 section {
@@ -12,5 +12,22 @@ section {
 }
 
 .card {
-    background-color : rgba(255,255,255,0.8)
+    background-color : rgba(255,255,255,0.6)
+}
+
+.text_box{
+    font-size: 2rem;
+    text-align: left;
+    font-family: 'Gowun Dodum', sans-serif;
+}
+
+.blink {
+    animation: blink 0.5s infinite;
+    font-size: 2.8rem;
+}
+
+@keyframes blink {
+  to {
+    opacity: 0;
+  }
 }
