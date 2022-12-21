@@ -25,7 +25,7 @@
         <hr>
 
           {% if user.is_authenticated and user == post.author %}
-              <a class="btn btn-info btn-sm float-right" 
+              <a class="btn btn-outline-primary btn-sm float-right" 
                 href="/blog/update_post/{{ post.pk }}/" role="button">
                 <i class="fas fa-pen"></i>  Edit Post
                 </a>
@@ -83,7 +83,7 @@
                 <div class="form-group">
                 {{ comment_form | crispy }}
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-outline-info">Submit</button>
             </form>
               {% else %}
                   <a  role="button" class="btn btn-outline-dark btn-block btn-sm" href="#" 
@@ -107,12 +107,12 @@
                 <div class="float-right">
                     
                 
-                    <a role='button' class="btn btn-sm btn-info" 
+                    <a role='button' class="btn btn-sm btn-outline-primary" 
                        id="comment-{{ comment.pk }}-update-btn" href="/blog/update_comment/{{ comment.pk }}/">
                         edit</a>
                 
                     <a role="button" href="#" id="comment-{{ comment.pk }}-delete-modal-btn"
-                        class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteCommentModal-{{ comment.pk }}">
+                        class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#deleteCommentModal-{{ comment.pk }}">
                             delete
                         </a>
                     
