@@ -1,4 +1,3 @@
-
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Post, Category , Tag, Comment
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -23,7 +22,7 @@ class CommentUpdate(LoginRequiredMixin, UpdateView):
             
         else:
             raise PermissionDenied
-        
+          
         
 
 class PostUpdate(LoginRequiredMixin, UpdateView):

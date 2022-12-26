@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,9 +47,10 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     
     'allauth.socialaccount.providers.google',
-    
     'blog',
     'single_pages',
+    'board',
+    'chat',
 ]
 
 MIDDLEWARE = [
@@ -78,9 +80,8 @@ TEMPLATES = [
         },
     },
 ]
-
+ASGI_APPLICATION = 'config.asgi.application'
 WSGI_APPLICATION = 'config.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -148,3 +149,4 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 LOGIN_REDIRECT_URL = '/blog/'
 ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
+
