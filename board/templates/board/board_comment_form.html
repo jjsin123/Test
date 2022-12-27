@@ -1,0 +1,16 @@
+{% extends 'board/base_full_width.html' %}
+{% load crispy_forms_tags %}
+{% block head_title %}댓글 수정{% endblock %}
+
+{% block main_area %}
+    <h1>댓글 수정</h1>
+    <hr>
+    <form method="post" id="coment-form">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <br>
+        <button type="submit" class="btn btn-info float-right">등록</button>
+
+    </form>
+
+{% endblock %}

@@ -79,7 +79,3 @@ class Comment(models.Model):
     
     def get_absolute_url(self):
         return f'{ self.post.get_absolute_url()}#comment-{self.pk}'
-
-    
-# author : 추후 작성 예정
-# Create your models here.

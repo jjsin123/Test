@@ -28,4 +28,26 @@
 {% else %}
     <a href="#" type="button" class="btn btn-secondary float-right" data-toggle="modal" data-target="#loginModal">글쓰기</a>
 {% endif %}
+
+<!-- Pagination -->
+<ul class="pagination justify-content-center mb-4">       
+    {% if page_obj.has_next %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}">&larr; 이전으로</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+        <a class="page-link" href="#">&larr; 이전으로</a>
+    </li>
+    {% endif %}  
+    {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">다음으로 &rarr;</a>
+        </li>
+    {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">다음으로 &rarr;</a>
+        </li>                    
+    {% endif %}  
+</ul>
 {% endblock %}
