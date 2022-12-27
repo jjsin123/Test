@@ -1,16 +1,44 @@
-{% extends 'board/base.html' %}
+{% extends 'board/base_full_width.html' %}
+{% load crispy_forms_tags %}
 
 {% block main_area %}
-
+<h1>자유게시판</h1>
+<hr>
 <div class="card">
-  <div class="card-body">
-    <h4 class="card-title">{{ board.title }}</h4>
-      <p class="float-right">{{ board.create_at }}</p>
-      {{ board.author }}
-      <hr>
-      {{ board.content | safe }}
-  </div>
+    <div class="card-body">            
+        {% if user.is_authenticated and user == board.author %}
+        <div class="float-right">         
+            <a class="btn btn-outline-primary btn-sm" href="/board/update_board/{{ board.pk }}/" role="button">
+            <i class="fas fa-pen"></i>  게시글 수정</a>
+            <a class="btn btn-outline-danger btn-sm" href="/board/delete_board/{{ board.pk }}/" role="button">
+            <i class="fas fa-pen"></i>  게시글 삭제</a>
+        </div>
+        {% endif %}
+        <h4 class="card-title">{{ board.title }}</h4>
+
+        <p class="float-right">작성시간 : {{ board.create_at }}</p>
+        <p>작성자 : {{ board.author }}</p>
+        <hr>
+        {{ board.content | safe }}
+    </div>
 </div>
-
-
+<div id="comment-area">
+    <!-- Comments Form -->
+    <div class="card my-4">
+        <h5 class="card-header">댓글 남기기:</h5>
+        <div class="card-body">
+            {% if user.is_authenticated %}
+            <form id="comment-form" method="POST" action=" {{ post.get_absolute_url}}new_comment/">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form | crispy }}
+                </div>
+                <button type="submit" class="btn btn-outline-info">Submit</button>
+            </form>
+            {% else %}
+                <a  role="button" class="btn btn-outline-dark btn-block btn-sm" href="#" data-toggle="modal" data-target="#loginModal">Log in and Leave a Comment</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}

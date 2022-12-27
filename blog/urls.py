@@ -11,8 +11,10 @@ urlpatterns = [
     path('<int:pk>/',views.PostDetail.as_view()),
     path('category/<str:slug>/',views.category_page),
     path('<int:pk>/new_comment/',views.new_comment),
+    path('delete_post/<int:pk>/', views.delete_post),
     # https://project-ztsct.run.goorm.io/blog/category/programming
     # programming 만 떼어 views.py 의 category_page()
     path('',views.PostList.as_view()),
     # post_list.html 로 이동
+
 ]

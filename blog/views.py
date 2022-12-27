@@ -22,8 +22,6 @@ class CommentUpdate(LoginRequiredMixin, UpdateView):
             
         else:
             raise PermissionDenied
-          
-        
 
 class PostUpdate(LoginRequiredMixin, UpdateView):
     model = Post
@@ -214,36 +212,9 @@ def delete_comment(request, pk):
     else:
         raise PermissionDenied
             
-            
-    
-# template_name = 'blog/index.html'
-
-
-# from django.shortcuts import render
-# from .models import Post
-
-
-
-# def index(request):
-    
-#     posts =Post.objects.all().order_by('-pk')
-    
-#     return render(
-#         request,
-#         'blog/index.html',
-#         {
-#             'posts':posts,
-#         }
-#     )
-
-# def single_post_page(request,pk):
-#     post = Post.objects.get(pk=pk)
-    
-#     return render(
-#         request,
-#         'blog/single_post_page.html',
-#         {
-#             'post': post,
-#         }
-#     )
-# Create your views here.
+def delete_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.user.is_authenticated and request.user == post.author:
+        post.delete()
+        
+    return redirect('/blog/')
