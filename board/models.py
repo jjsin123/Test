@@ -1,10 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
+from markdownx.models import MarkdownxField
+from markdownx.utils import markdown
+import os
+
 
 # Create your models here.
 class Board(models.Model):
     title = models.CharField(max_length=150)
-    content = models.TextField()
+    content = MarkdownxField()
     
     create_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -16,6 +20,9 @@ class Board(models.Model):
     
     def get_absolute_url(self):
         return f'/board/{self.pk}/'
+    
+    def get_content_markdown(self):
+        return markdown(self.content)
     
 
     

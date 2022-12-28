@@ -35,6 +35,9 @@ class BoardCreate(LoginRequiredMixin, CreateView):
     model = Board
     form_class = BoardForm
     
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
+    
     def form_valid(self,form):
         current_user = self.request.user
         

@@ -150,3 +150,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 LOGIN_REDIRECT_URL = '/blog/'
 ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
 
+GRAPH_MODELS ={
+    'all_applications': True,
+    'graph_models': True,
+     }
